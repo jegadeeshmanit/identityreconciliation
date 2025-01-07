@@ -18,18 +18,18 @@ Technologies Used:
 
  Project Structure
 
-controller
-ContactController.java
-model
-Contact.java
-repository
-ContactRepository.java
-service
-IdentifyService.java
-dto
-IdentifyRequest.java
-IdentifyResponse.java
-IdentityReconciliationApplication.java
+- controller
+    ContactController.java
+- model
+    Contact.java
+- repository
+    ContactRepository.java
+- service
+    IdentifyService.java
+- dto
+    IdentifyRequest.java
+    IdentifyResponse.java
+- IdentityReconciliationApplication.java
 
 
 
