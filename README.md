@@ -43,16 +43,16 @@
 Project Structure
 
 1. controller
-  * ContactController.java
+    * ContactController.java
 2. model
-  * Contact.java
+    * Contact.java
 3. dto
-  * ContactRequest.java
-  * ContactResponse.java
+    * ContactRequest.java
+    * ContactResponse.java
 4. repository
-  * ContactRepository.java
+    * ContactRepository.java
 5. service
-  * ContactService.java
+    * ContactService.java
 6. IdentityReconciliationApplication.java
 
 
