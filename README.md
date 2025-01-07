@@ -56,8 +56,8 @@
 
 
 ## Build and Run
-   mvn clean install
-   java -jar target/identity-reconciliation-0.0.1-SNAPSHOT.jar
+  * mvn clean install
+  * java -jar target/identity-reconciliation-0.0.1-SNAPSHOT.jar
    
 
 ## API Usage:
