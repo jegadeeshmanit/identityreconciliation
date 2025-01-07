@@ -54,8 +54,6 @@
 6. IdentityReconciliationApplication.java
 
 
- 
-
 
 ## Build and Run
    mvn clean install
@@ -105,6 +103,7 @@
 
 Error Handling:
 - 400 Bad Request: Invalid input parameters
+- 400 Bad Request: Secondary contact can't update
 - 500 Internal Server Error: Server-side processing issues
 
 
