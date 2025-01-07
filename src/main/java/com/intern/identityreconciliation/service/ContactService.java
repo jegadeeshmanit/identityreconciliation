@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.intern.identityreconciliation.dto.ContactResponse;
+import com.intern.identityreconciliation.exceptionhandle.BadRequestException;
+import com.intern.identityreconciliation.exceptionhandle.InternalServerErrorException;
 import com.intern.identityreconciliation.model.Contact;
 import com.intern.identityreconciliation.model.Contact.LinkPrecedence;
 import com.intern.identityreconciliation.repository.ContactRepository;
@@ -17,43 +19,62 @@ import java.util.Optional;
 @Service
 public class ContactService {
 
-    @Autowired
-    private ContactRepository contactRepository;
+	@Autowired
+	private ContactRepository contactRepository;
 
-    @Transactional
-    public ContactResponse identifyContact(String email, String phoneNumber) {
-        Optional<Contact> existingContact = contactRepository.findByEmailOrPhoneNumber(email, phoneNumber);
+	@Transactional
+	public ContactResponse identifyContact(String email, String phoneNumber) {
 
-        if (existingContact.isEmpty()) {
-            Contact newContact = new Contact();
-            newContact.setEmail(email);
-            newContact.setPhoneNumber(phoneNumber);
-            newContact.setLinkPrecedence(LinkPrecedence.PRIMARY);
-            newContact.setCreatedAt(LocalDateTime.now());
-            newContact.setUpdatedAt(LocalDateTime.now());
-            contactRepository.save(newContact);
+		try {
+			if (email == null || phoneNumber == null || email.isEmpty() || phoneNumber.isEmpty()) {
+				throw new BadRequestException("Email and Phone number must not be empty.");
+			}
 
-            return new ContactResponse(newContact.getId(), List.of(email), List.of(phoneNumber), new ArrayList<>());
-        } else {
-            Contact existing = existingContact.get();
-            Contact secondaryContact = new Contact();
-            secondaryContact.setEmail(email);
-            secondaryContact.setPhoneNumber(phoneNumber);
-            secondaryContact.setLinkPrecedence(LinkPrecedence.SECONDARY);
-            secondaryContact.setLinkedContact(existing);
-            secondaryContact.setCreatedAt(LocalDateTime.now());
-            secondaryContact.setUpdatedAt(LocalDateTime.now());
-            contactRepository.save(secondaryContact);
+			Optional<Contact> existingContact = contactRepository.findByEmailOrPhoneNumber(email, phoneNumber);
 
-            List<String> emails = new ArrayList<>();
-            emails.add(existing.getEmail());
-            emails.add(email);
+			if (existingContact.isEmpty()) {
+				// No existing contact, create new contact
+				Contact newContact = new Contact();
+				newContact.setEmail(email);
+				newContact.setPhoneNumber(phoneNumber);
+				newContact.setLinkPrecedence(LinkPrecedence.PRIMARY);
+				newContact.setCreatedAt(LocalDateTime.now());
+				newContact.setUpdatedAt(LocalDateTime.now());
+				contactRepository.save(newContact);
 
-            List<String> phoneNumbers = new ArrayList<>();
-            phoneNumbers.add(existing.getPhoneNumber());
-            phoneNumbers.add(phoneNumber);
+				return new ContactResponse(newContact.getId(), List.of(email), List.of(phoneNumber), new ArrayList<>());
 
-            return new ContactResponse(existing.getId(), emails, phoneNumbers, List.of(secondaryContact.getId()));
-        }
-    }
+			} else {
+				// Existing contact, create secondary contact
+				Contact existing = existingContact.get();
+				Contact secondaryContact = new Contact();
+				secondaryContact.setEmail(email);
+				secondaryContact.setPhoneNumber(phoneNumber);
+				secondaryContact.setLinkPrecedence(LinkPrecedence.SECONDARY);
+				secondaryContact.setLinkedContact(existing);
+				secondaryContact.setCreatedAt(LocalDateTime.now());
+				secondaryContact.setUpdatedAt(LocalDateTime.now());
+
+				try {
+					contactRepository.save(secondaryContact);
+				} catch (Exception e) {
+					throw new BadRequestException("Query did not return a unique result: 2 results were returned.");
+				}
+
+				List<String> emails = new ArrayList<>();
+				emails.add(existing.getEmail());
+				emails.add(email);
+
+				List<String> phoneNumbers = new ArrayList<>();
+				phoneNumbers.add(existing.getPhoneNumber());
+				phoneNumbers.add(phoneNumber);
+
+				return new ContactResponse(existing.getId(), emails, phoneNumbers, List.of(secondaryContact.getId()));
+
+			}
+		} catch (Exception e) {
+			throw new BadRequestException("Secondary Contact can't be Upadte.");
+		}
+
+	}
 }
