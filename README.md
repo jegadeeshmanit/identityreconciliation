@@ -23,12 +23,12 @@ Technologies Used:
 - model
     - Contact.java
 - dto
-    - IdentifyRequest.java
-    - IdentifyResponse.java
+    - ContactRequest.java
+    - ContactResponse.java
 - repository
     - ContactRepository.java
 - service
-    - IdentifyService.java
+    - ContactService.java
 - IdentityReconciliationApplication.java
 
 
