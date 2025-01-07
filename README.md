@@ -33,24 +33,7 @@ Technologies Used:
 
 
 
-Setup Instructions:
-
-1. Prerequisites
-   - Java 11 or higher
-   - MySQL 8.0 or higher
-   - Maven
-
-2. Database Configuration
-   - Create a MySQL database named `identity_db`
-   - Update application.properties with your database credentials:
-     
-     spring.datasource.url=jdbc:mysql://localhost:3306/identity_db
-     spring.datasource.username=your_username
-     spring.datasource.password=your_password
-     
-
-3. Build and Run
-   
+# Build and Run
    mvn clean install
    java -jar target/identity-reconciliation-0.0.1-SNAPSHOT.jar
    
