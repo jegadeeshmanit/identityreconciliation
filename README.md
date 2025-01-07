@@ -3,7 +3,7 @@
  Project Overview
  This Identity Reconciliation API is designed to manage and consolidate contact information efficiently. When users submit contact details through the API, the system intelligently determines whether to create new contacts or link them to existing ones, maintaining a clear hierarchy of primary and secondary contacts.
  
- Key Components:
+ ## Key Components:
  1. Contact Management
     - Creates and updates contact records
     - Maintains relationships between primary and secondary contacts
@@ -29,7 +29,7 @@
     - Error handling
     - Data consistency checks
  
- Getting Started:
+## Getting Started:
  1. Clone the repository
  2. Configure MySQL database settings
  3. Build using Maven
@@ -38,9 +38,7 @@
  
 
 
-
-
-Project Structure
+## Project Structure
 
 1. controller
     * ContactController.java
@@ -59,12 +57,12 @@ Project Structure
  
 
 
-# Build and Run
+## Build and Run
    mvn clean install
    java -jar target/identity-reconciliation-0.0.1-SNAPSHOT.jar
    
 
-API Usage:
+## API Usage:
 
 1. Identify Contact
    - Endpoint: POST /api/identify
