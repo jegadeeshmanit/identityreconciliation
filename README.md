@@ -42,18 +42,18 @@
 
 Project Structure
 
-- controller
+1. controller
     - ContactController.java
-- model
+2. model
     - Contact.java
-- dto
+3. dto
     - ContactRequest.java
     - ContactResponse.java
-- repository
+4. repository
     - ContactRepository.java
-- service
+5. service
     - ContactService.java
-- IdentityReconciliationApplication.java
+6. IdentityReconciliationApplication.java
 
 
  
