@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.intern.identityreconciliation.dto.ContactResponse;
 import com.intern.identityreconciliation.exceptionhandle.BadRequestException;
-import com.intern.identityreconciliation.exceptionhandle.InternalServerErrorException;
 import com.intern.identityreconciliation.model.Contact;
 import com.intern.identityreconciliation.model.Contact.LinkPrecedence;
 import com.intern.identityreconciliation.repository.ContactRepository;

@@ -1,6 +1,9 @@
 # identityreconciliation
 This project implements a Spring Boot REST API to handle identity reconciliation by consolidating contact information. It identifies primary and secondary contacts based on incoming requests containing email and phone number details.
 
+
+
+
 Features
 1. REST Endpoint: /api/identify
  .Accepts email and phoneNumber in the request.
@@ -8,6 +11,8 @@ Features
 2. Database Integration: Uses MySQL for persistent storage.
 3. Dynamic Contact Linking: Automatically updates or creates new contact entries based on the incoming request.
 4. Scalable Design: Handles complex relationships between contacts seamlessly
+5. Exception Handle: handling 400 and 500 errors
+
 
 Technologies Used:
  -> Spring Boot: Backend framework.
