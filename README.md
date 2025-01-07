@@ -1,27 +1,46 @@
 # identityreconciliation
-This project implements a Spring Boot REST API to handle identity reconciliation by consolidating contact information. It identifies primary and secondary contacts based on incoming requests containing email and phone number details.
+ 
+ Project Overview
+ This Identity Reconciliation API is designed to manage and consolidate contact information efficiently. When users submit contact details through the API, the system intelligently determines whether to create new contacts or link them to existing ones, maintaining a clear hierarchy of primary and secondary contacts.
+ 
+ Key Components:
+ 1. Contact Management
+    - Creates and updates contact records
+    - Maintains relationships between primary and secondary contacts
+    - Handles duplicate detection and merging
+ 
+ 2. Data Storage
+    - Persistent storage using MySQL database
+    - Efficient querying and relationship mapping
+    - Data integrity maintenance
+ 
+ 3. API Features
+    - RESTful endpoint for contact identification
+    - JSON request/response format
+    - Comprehensive error handling
+ 
+ 4. System Requirements
+    - Java 8 or higher
+    - Maven for dependency management
+    - MySQL database server
+ 
+ 5. Security Considerations
+    - Input validation
+    - Error handling
+    - Data consistency checks
+ 
+ Getting Started:
+ 1. Clone the repository
+ 2. Configure MySQL database settings
+ 3. Build using Maven
+ 4. Run the Spring Boot application
+ 5. Test using Postman or any API client
+ 
 
 
 
 
-Features
-1. REST Endpoint: /api/identify
- .Accepts email and phoneNumber in the request.
- .Consolidates contacts into primary and secondary relationships.
-2. Database Integration: Uses MySQL for persistent storage.
-3. Dynamic Contact Linking: Automatically updates or creates new contact entries based on the incoming request.
-4. Scalable Design: Handles complex relationships between contacts seamlessly
-5. Exception Handle: handling 400 and 500 errors
-
-
-Technologies Used:
- -> Spring Boot: Backend framework.
- -> MySQL: Database for persistent storage.
- ->Spring Data JPA: ORM for database interaction.
- -> Lombok: Simplifies boilerplate code.
- -> Postman: For API testing.
-
- Project Structure
+Project Structure
 
 - controller
     - ContactController.java
@@ -36,6 +55,8 @@ Technologies Used:
     - ContactService.java
 - IdentityReconciliationApplication.java
 
+
+ 
 
 
 # Build and Run
@@ -88,12 +109,6 @@ Error Handling:
 - 400 Bad Request: Invalid input parameters
 - 500 Internal Server Error: Server-side processing issues
 
-Contributing:
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
 
 License:
 This project is licensed under the MIT License.
